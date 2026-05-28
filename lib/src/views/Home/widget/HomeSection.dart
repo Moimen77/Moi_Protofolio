@@ -1,5 +1,6 @@
 import 'package:moi_protofolio/src/extensions/spAdabt.dart';
 import 'package:moi_protofolio/src/imports/imports.dart';
+import 'package:moi_protofolio/src/shared/widgets/app_Icon_Button.dart';
 import 'package:moi_protofolio/src/shared/widgets/app_gradientText.dart';
 
 class HomeSection extends StatelessWidget {
@@ -91,6 +92,14 @@ class HomeSection extends StatelessWidget {
                           height: ButtonSize.small,
                           suffixIcon: Icon(Icons.download_rounded,
                               size: 10.spAdaptive(context)),
+                          onPressed: () {
+                            // Handle contact action
+                          },
+                        ),
+                        10.kW,
+                        AppIconButton(
+                          icon: Icons.email_outlined,
+                          size: 10.spAdaptive(context),
                           onPressed: () {
                             // Handle contact action
                           },
