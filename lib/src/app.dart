@@ -14,7 +14,7 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       title: 'moi_protofolio',
       debugShowCheckedModeBanner: false,
-      theme: buildLightTheme(primaryColorHex: '#09081c'),
+      theme: buildDarkTheme(primaryColorHex: '#09081c'),
       initialRoute: AppRoutes.home,
       getPages: AppRouter.getPages,
       localizationsDelegates: context.localizationDelegates,
