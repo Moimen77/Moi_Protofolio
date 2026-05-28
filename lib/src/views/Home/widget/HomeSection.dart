@@ -55,18 +55,18 @@ class HomeSection extends StatelessWidget {
                     Text(
                       'Flutter Developer',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: protofolioColors.textPrimary,
                         fontSize: 10.spAdaptive(context),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     15.kH,
-                    const SizedBox(
+                    SizedBox(
                       width: 450,
                       child: Text(
                         'I build beautiful, fast and scalable cross-platform applications with Flutter & modern technologies.',
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: protofolioColors.textSecondary,
                           fontSize: 18,
                           height: 1.7,
                         ),

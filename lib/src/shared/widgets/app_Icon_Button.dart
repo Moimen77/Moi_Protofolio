@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moi_protofolio/src/imports/core_imports.dart';
+import 'package:moi_protofolio/src/shared/widgets/AppGlassContainer.dart';
 
 class AppIconButton extends StatelessWidget {
   const AppIconButton(
@@ -19,13 +20,14 @@ class AppIconButton extends StatelessWidget {
     final bool iscircule = radius > 100;
     return GestureDetector(
       onTap: onPressed,
-      child: Container(
+      child: GlassContainer(
         padding:
             EdgeInsets.symmetric(horizontal: 15, vertical: iscircule ? 15 : 20),
-        decoration: BoxDecoration(
-          border: Border.all(color: protofolioColors.textPrimary, width: 1.5),
-          borderRadius: BorderRadius.circular(radius),
-        ),
+        radius: radius,
+        colors: [
+          protofolioColors.textPrimary.withOpacity(0.12),
+          protofolioColors.textPrimary.withOpacity(0.04),
+        ],
         child: AppIcon(
           icon: icon,
           size: size,

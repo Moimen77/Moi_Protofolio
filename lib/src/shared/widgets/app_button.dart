@@ -76,7 +76,7 @@ class AppButton extends StatelessWidget {
     final (bg, fg, border) = switch (variant) {
       ButtonVariant.primary => (
           color ?? protofolioColors.primaryGradientStart,
-          color ?? protofolioColors.textPrimary,
+          color ?? Colors.white,
           null
         ),
       ButtonVariant.secondary => (
