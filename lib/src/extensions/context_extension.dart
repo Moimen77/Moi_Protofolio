@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moi_protofolio/src/theme/ProtofolioColors.dart';
 
 import '../theme/color_schemes.dart';
 import '../theme/theme.dart';
@@ -11,6 +12,7 @@ extension ContextExtension on BuildContext {
   TextTheme get textTheme => apptTheme.textTheme;
   ColorScheme get colors => apptTheme.colorScheme;
   bool get isDarkMode => apptTheme.brightness == Brightness.dark;
+  PortfolioColors get portfolio => apptTheme.extension<PortfolioColors>()!;
 
   /// Semantic/custom colors (success, warning, info).
   AppColorsExtension get appColors =>
