@@ -4,11 +4,13 @@ import 'package:moi_protofolio/src/extensions/context_extension.dart';
 class GradientText extends StatelessWidget {
   final String text;
   final double fontSize;
+  final FontWeight fontWeight;
 
   const GradientText(
     this.text, {
     super.key,
     this.fontSize = 32,
+    this.fontWeight = FontWeight.bold,
   });
 
   @override
@@ -18,7 +20,7 @@ class GradientText extends StatelessWidget {
       text,
       style: TextStyle(
         fontSize: fontSize,
-        fontWeight: FontWeight.bold,
+        fontWeight: fontWeight,
         foreground: Paint()
           ..shader = LinearGradient(
             colors: [

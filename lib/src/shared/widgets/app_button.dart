@@ -1,3 +1,5 @@
+import 'package:moi_protofolio/src/extensions/spAdabt.dart';
+
 import '../../imports/imports.dart';
 
 /// A fully themed button supporting all [ButtonVariant]s and [ButtonSize]s.
@@ -42,53 +44,61 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cs = context.apptTheme.colorScheme;
+    final protofolioColors = context.portfolio;
     final appColors = context.apptTheme.extension<AppColorsExtension>()!;
     final isDisabled = onPressed == null || isLoading;
 
     final double buttonHeight = switch (height) {
-      ButtonSize.small => 36.h,
-      ButtonSize.medium => 48.h,
-      ButtonSize.large => 56.h,
+      ButtonSize.small => 25.spAdaptive(context),
+      ButtonSize.medium => 30.spAdaptive(context),
+      ButtonSize.large => 40.spAdaptive(context),
     };
 
     final double? buttonWidth = switch (width) {
-      ButtonSize.small => 100.w,
-      ButtonSize.medium => 150.w,
-      ButtonSize.large => 200.w,
+      ButtonSize.small => 50.spAdaptive(context),
+      ButtonSize.medium => 100.spAdaptive(context),
+      ButtonSize.large => 150.spAdaptive(context),
       null => null,
     };
 
     final double horizontalPadding = switch (height) {
-      ButtonSize.small => 12.w,
-      ButtonSize.medium => 20.w,
-      ButtonSize.large => 28.w,
+      ButtonSize.small => 12,
+      ButtonSize.medium => 20,
+      ButtonSize.large => 28,
     };
 
     final double fontSize = switch (height) {
-      ButtonSize.small => 12.sp,
-      ButtonSize.medium => 14.sp,
-      ButtonSize.large => 16.sp,
+      ButtonSize.small => 7.spAdaptive(context),
+      ButtonSize.medium => 9.spAdaptive(context),
+      ButtonSize.large => 10.spAdaptive(context),
     };
 
     final (bg, fg, border) = switch (variant) {
       ButtonVariant.primary => (
-          color ?? cs.primary,
-          color ?? cs.onPrimary,
+          color ?? protofolioColors.primaryGradientStart,
+          color ?? protofolioColors.textPrimary,
           null
         ),
       ButtonVariant.secondary => (
-          cs.secondaryContainer,
-          cs.onSecondaryContainer,
+          color ?? protofolioColors.primaryGradientStart,
+          color ?? protofolioColors.textPrimary,
           null
         ),
       ButtonVariant.outline => (
           Colors.transparent,
-          cs.primary,
-          BorderSide(color: cs.outline, width: 1.5)
+          protofolioColors.textPrimary,
+          BorderSide(color: protofolioColors.textPrimary, width: 1.5)
         ),
-      ButtonVariant.ghost => (Colors.transparent, cs.primary, null),
-      ButtonVariant.danger => (cs.error, cs.onError, null),
+      ButtonVariant.ghost => (
+          Colors.transparent,
+          context.apptTheme.colorScheme.primary,
+          null
+        ),
+      ButtonVariant.danger => (
+          context.appColors.info,
+          context.appColors.warning,
+          null
+        ),
       ButtonVariant.success => (appColors.success, appColors.onSuccess, null),
     };
 
@@ -98,8 +108,8 @@ class AppButton extends StatelessWidget {
       child: isLoading
           ? SizedBox(
               key: const ValueKey('loader'),
-              width: 20.w,
-              height: 20.h,
+              width: 20.spAdaptive(context),
+              height: 20.spAdaptive(context),
               child: CircularProgressIndicator(
                 strokeWidth: 2,
                 color: fg,
@@ -111,20 +121,20 @@ class AppButton extends StatelessWidget {
               children: [
                 if (prefixIcon != null) ...[
                   prefixIcon!,
-                  SizedBox(width: 8.w),
+                  const SizedBox(width: 8),
                 ],
                 Text(
                   label,
                   style: TextStyle(
                     fontSize: fontSize,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.normal,
                     color: isDisabled
                         ? fg.withValues(alpha: 0.5)
                         : textColor ?? fg,
                   ),
                 ),
                 if (suffixIcon != null) ...[
-                  SizedBox(width: 8.w),
+                  const SizedBox(width: 8),
                   suffixIcon!,
                 ],
               ],
