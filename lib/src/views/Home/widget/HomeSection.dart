@@ -105,6 +105,31 @@ class HomeSection extends StatelessWidget {
                           },
                         ),
                       ],
+                    ),
+                    20.kH,
+                    Row(
+                      children: [
+                        const AppIconButton(
+                          imagePath: 'assets/images/github.png',
+                          size: 20,
+                          onPressed: null,
+                          radius: 101,
+                        ),
+                        15.kW,
+                        const AppIconButton(
+                          imagePath: 'assets/images/linkedin.png',
+                          size: 20,
+                          onPressed: null,
+                          radius: 101,
+                        ),
+                        15.kW,
+                        const AppIconButton(
+                          imagePath: 'assets/images/whatsapp.png',
+                          size: 20,
+                          onPressed: null,
+                          radius: 101,
+                        ),
+                      ],
                     )
                   ],
                 )),
