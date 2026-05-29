@@ -8,9 +8,11 @@ class AppIconButton extends StatelessWidget {
       this.onPressed,
       this.icon = Icons.home,
       this.size = 24,
-      this.radius = 15});
+      this.radius = 15,
+      this.imagePath});
   final VoidCallback? onPressed;
   final IconData icon;
+  final String? imagePath;
   final double size;
   final double radius;
 
@@ -28,11 +30,17 @@ class AppIconButton extends StatelessWidget {
           protofolioColors.textPrimary.withOpacity(0.12),
           protofolioColors.textPrimary.withOpacity(0.04),
         ],
-        child: AppIcon(
-          icon: icon,
-          size: size,
-          color: protofolioColors.textPrimary,
-        ),
+        child: imagePath != null
+            ? Image.asset(
+                imagePath!,
+                width: size,
+                height: size,
+              )
+            : AppIcon(
+                icon: icon,
+                size: size,
+                color: protofolioColors.textPrimary,
+              ),
       ),
     );
   }
