@@ -10,6 +10,10 @@ class GlassContainer extends StatelessWidget {
     this.padding = const EdgeInsets.all(20),
     this.radius = 30,
     required this.colors,
+    this.glowColor,
+    this.glowBlurRadius = 60,
+    this.glowSpreadRadius = 20,
+    this.glowOpacity = .4,
   });
 
   final Widget child;
@@ -17,44 +21,50 @@ class GlassContainer extends StatelessWidget {
   final double radius;
   final List<Color> colors;
 
+  final Color? glowColor;
+  final double glowBlurRadius;
+  final double glowSpreadRadius;
+  final double glowOpacity;
+
   @override
   Widget build(BuildContext context) {
     final protofolioColors = context.portfolio;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(radius),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(
-          sigmaX: 20,
-          sigmaY: 20,
-        ),
-        child: Container(
-          padding: padding,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(radius),
 
-            // glass gradient
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: colors,
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(radius),
+        boxShadow: [
+          if (glowColor != null)
+            BoxShadow(
+              color: glowColor!.withValues(alpha: glowOpacity),
+              blurRadius: glowBlurRadius,
+              spreadRadius: glowSpreadRadius,
             ),
-
-            // border
-            border: Border.all(
-              color: protofolioColors.textPrimary.withOpacity(0.12),
-              width: 1.2,
-            ),
-
-            // glow shadow
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.25),
-                blurRadius: 30,
-                offset: const Offset(0, 10),
-              ),
-            ],
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(radius),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 20,
+            sigmaY: 20,
           ),
-          child: child,
+          child: Container(
+            padding: padding,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(radius),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: colors,
+              ),
+              border: Border.all(
+                color: protofolioColors.textPrimary.withOpacity(0.12),
+                width: 1.2,
+              ),
+            ),
+            child: child,
+          ),
         ),
       ),
     );
